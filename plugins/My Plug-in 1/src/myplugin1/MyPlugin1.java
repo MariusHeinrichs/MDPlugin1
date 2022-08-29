@@ -6,6 +6,8 @@ import com.nomagic.magicdraw.actions.MDAction;
 import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.plugins.Plugin;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
+import myplugin1.actions.BrowserAction;
+import myplugin1.actions.BrowserConfiguration;
 import myplugin1.actions.MainMenuAction;
 import myplugin1.actions.MainMenuConfiguration;
 
@@ -20,6 +22,7 @@ public class MyPlugin1 extends Plugin
 	{
 		initialized = true;
 		createMainMenuAction();
+		createBrowserAction();
 		Application.getInstance().getGUILog().showMessage("My Plug-in 1 initialized.");
 	}
 
@@ -41,5 +44,10 @@ public class MyPlugin1 extends Plugin
 		MainMenuAction action = new MainMenuAction("MyPlugin1MainMenuAction", "My Plugin 1 Main Menu Action");
 		MainMenuConfiguration configurator = new MainMenuConfiguration(action);
 		ActionsConfiguratorsManager.getInstance().addMainMenuConfigurator(configurator);
+	}
+	private void createBrowserAction() {
+		BrowserAction action = new BrowserAction("MyPlugin1BrowserAction", "My Plugin 1 Browser Action");
+		BrowserConfiguration browserConfiguration = new BrowserConfiguration(action);
+		ActionsConfiguratorsManager.getInstance().addContainmentBrowserContextConfigurator(browserConfiguration);
 	}
 }
