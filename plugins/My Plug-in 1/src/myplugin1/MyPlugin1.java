@@ -6,10 +6,7 @@ import com.nomagic.magicdraw.actions.MDAction;
 import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.plugins.Plugin;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
-import myplugin1.actions.BrowserAction;
-import myplugin1.actions.BrowserConfiguration;
-import myplugin1.actions.MainMenuAction;
-import myplugin1.actions.MainMenuConfiguration;
+import myplugin1.actions.*;
 
 
 public class MyPlugin1 extends Plugin
@@ -23,6 +20,7 @@ public class MyPlugin1 extends Plugin
 		initialized = true;
 		createMainMenuAction();
 		createBrowserAction();
+		createDiagramAction();
 		Application.getInstance().getGUILog().showMessage("My Plug-in 1 initialized.");
 	}
 
@@ -47,7 +45,13 @@ public class MyPlugin1 extends Plugin
 	}
 	private void createBrowserAction() {
 		BrowserAction action = new BrowserAction("MyPlugin1BrowserAction", "My Plugin 1 Browser Action");
-		BrowserConfiguration browserConfiguration = new BrowserConfiguration(action);
-		ActionsConfiguratorsManager.getInstance().addContainmentBrowserContextConfigurator(browserConfiguration);
+		BrowserConfiguration configurator = new BrowserConfiguration(action);
+		ActionsConfiguratorsManager.getInstance().addContainmentBrowserContextConfigurator(configurator);
+	}
+
+	private void createDiagramAction(){
+		DiagramAction action = new DiagramAction("MyPlugin1DiagramAction", "My Plugin 1 Browser Action");
+		DiagramConfiguration configurator = new DiagramConfiguration(action);
+		ActionsConfiguratorsManager.getInstance().addAnyDiagramCommandBarConfigurator(configurator);
 	}
 }
