@@ -21,6 +21,7 @@ public class MyPlugin1 extends Plugin
 		createMainMenuAction();
 		createBrowserAction();
 		createDiagramAction();
+		createBrowserActionCreateElement();
 		Application.getInstance().getGUILog().showMessage("My Plug-in 1 initialized.");
 	}
 
@@ -46,6 +47,12 @@ public class MyPlugin1 extends Plugin
 	private void createBrowserAction() {
 		BrowserAction action = new BrowserAction("MyPlugin1BrowserAction", "My Plugin 1 Browser Action");
 		BrowserConfiguration configurator = new BrowserConfiguration(action);
+		ActionsConfiguratorsManager.getInstance().addContainmentBrowserContextConfigurator(configurator);
+	}
+
+	private void createBrowserActionCreateElement() {
+		BrowserActionCreateElement action = new BrowserActionCreateElement("MyPlugin1BrowserActionCreateElement", "My Plugin 1 Browser Action Create Element");
+		BrowserCreateElementConfiguration configurator = new BrowserCreateElementConfiguration(action);
 		ActionsConfiguratorsManager.getInstance().addContainmentBrowserContextConfigurator(configurator);
 	}
 
