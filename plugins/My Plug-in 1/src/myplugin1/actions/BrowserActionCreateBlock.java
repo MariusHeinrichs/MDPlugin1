@@ -5,17 +5,15 @@ import com.nomagic.magicdraw.openapi.uml.ReadOnlyElementException;
 import com.nomagic.magicdraw.ui.browser.Node;
 import com.nomagic.magicdraw.ui.browser.Tree;
 import com.nomagic.magicdraw.ui.browser.actions.DefaultBrowserAction;
-import com.nomagic.magicdraw.uml.BaseElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
 
 import java.awt.event.ActionEvent;
 
-public class BrowserActionCreateElement extends DefaultBrowserAction {
+public class BrowserActionCreateBlock extends DefaultBrowserAction {
 
-    public BrowserActionCreateElement(String id, String name) {
+    public BrowserActionCreateBlock(String id, String name) {
         super(id, name, null, null);
     }
-
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         Tree tree = getTree();
@@ -25,8 +23,8 @@ public class BrowserActionCreateElement extends DefaultBrowserAction {
         if(selectedNode != null){
             if(selectedNode.getUserObject() instanceof Package) {
                 Package parentPackage = (Package) selectedNode.getUserObject();
-                ElementGenerator generator = new ElementGenerator();
-                Application.getInstance().getGUILog().showMessage("Creating Example Classes in: " + parentPackage.getHumanName());
+                BlockGenerator generator = new BlockGenerator();
+                Application.getInstance().getGUILog().showMessage("Creating Example Blocks in: " + parentPackage.getHumanName());
                 try {
                     generator.execute(parentPackage);
                 } catch (ReadOnlyElementException e) {

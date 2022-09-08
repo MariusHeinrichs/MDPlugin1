@@ -11,6 +11,7 @@ import com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Dependency;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.*;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
+import com.nomagic.uml2.ext.magicdraw.compositestructures.mdports.Port;
 import com.nomagic.uml2.impl.ElementsFactory;
 
 public class ElementGenerator {
@@ -42,6 +43,7 @@ public class ElementGenerator {
         Class firstClass = createClass(parentPackage, "First class");
         addProperty(firstClass);
         addOperation(firstClass);
+        addPort(firstClass);
 
         Enumeration enumeration = createEnumeration(parentPackage);
 
@@ -111,6 +113,12 @@ public class ElementGenerator {
         Dependency dependency = factory.createDependencyInstance();
         CoreHelper.setSupplierElement(dependency, firstClass);
         CoreHelper.setClientElement(dependency, secondClass);
-        dependency.setOwner(parentPackage);
+        manager.addElement(dependency, parentPackage);
+    }
+
+    private void addPort(Class mdClass) throws ReadOnlyElementException {
+        Port port = factory.createPortInstance();
+        manager.addElement(port, mdClass);
+
     }
 }
